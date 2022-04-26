@@ -1,0 +1,1382 @@
+
+
+        #const max_width = 40.
+        #const max_height = 40.
+
+        width(1..max_width).
+        height(1..max_height).
+
+        tile_type(filled;empty).
+
+        1{tile(XX, YY, Type): tile_type(Type)}1 :- width(XX), height(YY).
+
+
+
+        1{start(XX,YY): tile(XX,YY,empty)}1.
+        1{end(XX,YY): tile(XX,YY,empty)}1.
+        :- start(XX,YY), end(XX,YY).
+
+        path(XX,YY) :- start(XX,YY).
+
+        %% add empty to path if neighboring path
+        path(XX,YY) :- tile(XX,YY, empty), path(XX-1,YY).
+        path(XX,YY) :- tile(XX,YY, empty), path(XX+1,YY).
+        path(XX,YY) :- tile(XX,YY, empty), path(XX,YY-1).
+        path(XX,YY) :- tile(XX,YY, empty), path(XX,YY+1).
+
+        :- end(XX,YY), not path(XX,YY).
+
+
+        
+
+        
+            :- start(XX,_), XX != max_width.
+            :- end(XX,_), XX != 1.
+
+            :- start(_,YY), YY != max_height-1.
+            :- end(_,YY), YY != 2.
+        
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                not tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                not tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                not tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                not tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                not tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                not tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                 tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                not tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+                :- tile(XX,YY,empty),
+                not tile(XX-1, YY+1, filled),
+                 tile(XX, YY+1, filled),
+                 tile(XX+1, YY+1, filled),
+                 tile(XX-1, YY, filled),
+                 tile(XX+1, YY, filled),
+                 tile(XX-1, YY-1, filled),
+                 tile(XX, YY-1, filled),
+                 tile(XX+1, YY-1, filled).
+                
+            
+            
+         checkered(1,1,white) :- piece_path(1,1), tile(1,1,filled).
+ checkered(2,1,black) :- piece_path(2,1), tile(2,1,filled).
+ checkered(3,1,white) :- piece_path(3,1), tile(3,1,filled).
+ checkered(4,1,black) :- piece_path(4,1), tile(4,1,filled).
+ checkered(5,1,white) :- piece_path(5,1), tile(5,1,filled).
+ checkered(6,1,black) :- piece_path(6,1), tile(6,1,filled).
+ checkered(7,1,white) :- piece_path(7,1), tile(7,1,filled).
+ checkered(8,1,black) :- piece_path(8,1), tile(8,1,filled).
+ checkered(9,1,white) :- piece_path(9,1), tile(9,1,filled).
+ checkered(10,1,black) :- piece_path(10,1), tile(10,1,filled).
+ checkered(11,1,white) :- piece_path(11,1), tile(11,1,filled).
+ checkered(12,1,black) :- piece_path(12,1), tile(12,1,filled).
+ checkered(1,2,black) :- piece_path(1,2), tile(1,2,filled).
+ checkered(2,2,white) :- piece_path(2,2), tile(2,2,filled).
+ checkered(3,2,black) :- piece_path(3,2), tile(3,2,filled).
+ checkered(4,2,white) :- piece_path(4,2), tile(4,2,filled).
+ checkered(5,2,black) :- piece_path(5,2), tile(5,2,filled).
+ checkered(6,2,white) :- piece_path(6,2), tile(6,2,filled).
+ checkered(7,2,black) :- piece_path(7,2), tile(7,2,filled).
+ checkered(8,2,white) :- piece_path(8,2), tile(8,2,filled).
+ checkered(9,2,black) :- piece_path(9,2), tile(9,2,filled).
+ checkered(10,2,white) :- piece_path(10,2), tile(10,2,filled).
+ checkered(11,2,black) :- piece_path(11,2), tile(11,2,filled).
+ checkered(12,2,white) :- piece_path(12,2), tile(12,2,filled).
+ checkered(1,3,white) :- piece_path(1,3), tile(1,3,filled).
+ checkered(2,3,black) :- piece_path(2,3), tile(2,3,filled).
+ checkered(3,3,white) :- piece_path(3,3), tile(3,3,filled).
+ checkered(4,3,black) :- piece_path(4,3), tile(4,3,filled).
+ checkered(5,3,white) :- piece_path(5,3), tile(5,3,filled).
+ checkered(6,3,black) :- piece_path(6,3), tile(6,3,filled).
+ checkered(7,3,white) :- piece_path(7,3), tile(7,3,filled).
+ checkered(8,3,black) :- piece_path(8,3), tile(8,3,filled).
+ checkered(9,3,white) :- piece_path(9,3), tile(9,3,filled).
+ checkered(10,3,black) :- piece_path(10,3), tile(10,3,filled).
+ checkered(11,3,white) :- piece_path(11,3), tile(11,3,filled).
+ checkered(12,3,black) :- piece_path(12,3), tile(12,3,filled).
+ checkered(1,4,black) :- piece_path(1,4), tile(1,4,filled).
+ checkered(2,4,white) :- piece_path(2,4), tile(2,4,filled).
+ checkered(3,4,black) :- piece_path(3,4), tile(3,4,filled).
+ checkered(4,4,white) :- piece_path(4,4), tile(4,4,filled).
+ checkered(5,4,black) :- piece_path(5,4), tile(5,4,filled).
+ checkered(6,4,white) :- piece_path(6,4), tile(6,4,filled).
+ checkered(7,4,black) :- piece_path(7,4), tile(7,4,filled).
+ checkered(8,4,white) :- piece_path(8,4), tile(8,4,filled).
+ checkered(9,4,black) :- piece_path(9,4), tile(9,4,filled).
+ checkered(10,4,white) :- piece_path(10,4), tile(10,4,filled).
+ checkered(11,4,black) :- piece_path(11,4), tile(11,4,filled).
+ checkered(12,4,white) :- piece_path(12,4), tile(12,4,filled).
+ checkered(1,5,white) :- piece_path(1,5), tile(1,5,filled).
+ checkered(2,5,black) :- piece_path(2,5), tile(2,5,filled).
+ checkered(3,5,white) :- piece_path(3,5), tile(3,5,filled).
+ checkered(4,5,black) :- piece_path(4,5), tile(4,5,filled).
+ checkered(5,5,white) :- piece_path(5,5), tile(5,5,filled).
+ checkered(6,5,black) :- piece_path(6,5), tile(6,5,filled).
+ checkered(7,5,white) :- piece_path(7,5), tile(7,5,filled).
+ checkered(8,5,black) :- piece_path(8,5), tile(8,5,filled).
+ checkered(9,5,white) :- piece_path(9,5), tile(9,5,filled).
+ checkered(10,5,black) :- piece_path(10,5), tile(10,5,filled).
+ checkered(11,5,white) :- piece_path(11,5), tile(11,5,filled).
+ checkered(12,5,black) :- piece_path(12,5), tile(12,5,filled).
+ checkered(1,6,black) :- piece_path(1,6), tile(1,6,filled).
+ checkered(2,6,white) :- piece_path(2,6), tile(2,6,filled).
+ checkered(3,6,black) :- piece_path(3,6), tile(3,6,filled).
+ checkered(4,6,white) :- piece_path(4,6), tile(4,6,filled).
+ checkered(5,6,black) :- piece_path(5,6), tile(5,6,filled).
+ checkered(6,6,white) :- piece_path(6,6), tile(6,6,filled).
+ checkered(7,6,black) :- piece_path(7,6), tile(7,6,filled).
+ checkered(8,6,white) :- piece_path(8,6), tile(8,6,filled).
+ checkered(9,6,black) :- piece_path(9,6), tile(9,6,filled).
+ checkered(10,6,white) :- piece_path(10,6), tile(10,6,filled).
+ checkered(11,6,black) :- piece_path(11,6), tile(11,6,filled).
+ checkered(12,6,white) :- piece_path(12,6), tile(12,6,filled).
+ checkered(1,7,white) :- piece_path(1,7), tile(1,7,filled).
+ checkered(2,7,black) :- piece_path(2,7), tile(2,7,filled).
+ checkered(3,7,white) :- piece_path(3,7), tile(3,7,filled).
+ checkered(4,7,black) :- piece_path(4,7), tile(4,7,filled).
+ checkered(5,7,white) :- piece_path(5,7), tile(5,7,filled).
+ checkered(6,7,black) :- piece_path(6,7), tile(6,7,filled).
+ checkered(7,7,white) :- piece_path(7,7), tile(7,7,filled).
+ checkered(8,7,black) :- piece_path(8,7), tile(8,7,filled).
+ checkered(9,7,white) :- piece_path(9,7), tile(9,7,filled).
+ checkered(10,7,black) :- piece_path(10,7), tile(10,7,filled).
+ checkered(11,7,white) :- piece_path(11,7), tile(11,7,filled).
+ checkered(12,7,black) :- piece_path(12,7), tile(12,7,filled).
+ checkered(1,8,black) :- piece_path(1,8), tile(1,8,filled).
+ checkered(2,8,white) :- piece_path(2,8), tile(2,8,filled).
+ checkered(3,8,black) :- piece_path(3,8), tile(3,8,filled).
+ checkered(4,8,white) :- piece_path(4,8), tile(4,8,filled).
+ checkered(5,8,black) :- piece_path(5,8), tile(5,8,filled).
+ checkered(6,8,white) :- piece_path(6,8), tile(6,8,filled).
+ checkered(7,8,black) :- piece_path(7,8), tile(7,8,filled).
+ checkered(8,8,white) :- piece_path(8,8), tile(8,8,filled).
+ checkered(9,8,black) :- piece_path(9,8), tile(9,8,filled).
+ checkered(10,8,white) :- piece_path(10,8), tile(10,8,filled).
+ checkered(11,8,black) :- piece_path(11,8), tile(11,8,filled).
+ checkered(12,8,white) :- piece_path(12,8), tile(12,8,filled).
+ checkered(1,9,white) :- piece_path(1,9), tile(1,9,filled).
+ checkered(2,9,black) :- piece_path(2,9), tile(2,9,filled).
+ checkered(3,9,white) :- piece_path(3,9), tile(3,9,filled).
+ checkered(4,9,black) :- piece_path(4,9), tile(4,9,filled).
+ checkered(5,9,white) :- piece_path(5,9), tile(5,9,filled).
+ checkered(6,9,black) :- piece_path(6,9), tile(6,9,filled).
+ checkered(7,9,white) :- piece_path(7,9), tile(7,9,filled).
+ checkered(8,9,black) :- piece_path(8,9), tile(8,9,filled).
+ checkered(9,9,white) :- piece_path(9,9), tile(9,9,filled).
+ checkered(10,9,black) :- piece_path(10,9), tile(10,9,filled).
+ checkered(11,9,white) :- piece_path(11,9), tile(11,9,filled).
+ checkered(12,9,black) :- piece_path(12,9), tile(12,9,filled).
+ checkered(1,10,black) :- piece_path(1,10), tile(1,10,filled).
+ checkered(2,10,white) :- piece_path(2,10), tile(2,10,filled).
+ checkered(3,10,black) :- piece_path(3,10), tile(3,10,filled).
+ checkered(4,10,white) :- piece_path(4,10), tile(4,10,filled).
+ checkered(5,10,black) :- piece_path(5,10), tile(5,10,filled).
+ checkered(6,10,white) :- piece_path(6,10), tile(6,10,filled).
+ checkered(7,10,black) :- piece_path(7,10), tile(7,10,filled).
+ checkered(8,10,white) :- piece_path(8,10), tile(8,10,filled).
+ checkered(9,10,black) :- piece_path(9,10), tile(9,10,filled).
+ checkered(10,10,white) :- piece_path(10,10), tile(10,10,filled).
+ checkered(11,10,black) :- piece_path(11,10), tile(11,10,filled).
+ checkered(12,10,white) :- piece_path(12,10), tile(12,10,filled).
+ checkered(1,11,white) :- piece_path(1,11), tile(1,11,filled).
+ checkered(2,11,black) :- piece_path(2,11), tile(2,11,filled).
+ checkered(3,11,white) :- piece_path(3,11), tile(3,11,filled).
+ checkered(4,11,black) :- piece_path(4,11), tile(4,11,filled).
+ checkered(5,11,white) :- piece_path(5,11), tile(5,11,filled).
+ checkered(6,11,black) :- piece_path(6,11), tile(6,11,filled).
+ checkered(7,11,white) :- piece_path(7,11), tile(7,11,filled).
+ checkered(8,11,black) :- piece_path(8,11), tile(8,11,filled).
+ checkered(9,11,white) :- piece_path(9,11), tile(9,11,filled).
+ checkered(10,11,black) :- piece_path(10,11), tile(10,11,filled).
+ checkered(11,11,white) :- piece_path(11,11), tile(11,11,filled).
+ checkered(12,11,black) :- piece_path(12,11), tile(12,11,filled).
+ checkered(1,12,black) :- piece_path(1,12), tile(1,12,filled).
+ checkered(2,12,white) :- piece_path(2,12), tile(2,12,filled).
+ checkered(3,12,black) :- piece_path(3,12), tile(3,12,filled).
+ checkered(4,12,white) :- piece_path(4,12), tile(4,12,filled).
+ checkered(5,12,black) :- piece_path(5,12), tile(5,12,filled).
+ checkered(6,12,white) :- piece_path(6,12), tile(6,12,filled).
+ checkered(7,12,black) :- piece_path(7,12), tile(7,12,filled).
+ checkered(8,12,white) :- piece_path(8,12), tile(8,12,filled).
+ checkered(9,12,black) :- piece_path(9,12), tile(9,12,filled).
+ checkered(10,12,white) :- piece_path(10,12), tile(10,12,filled).
+ checkered(11,12,black) :- piece_path(11,12), tile(11,12,filled).
+ checkered(12,12,white) :- piece_path(12,12), tile(12,12,filled).
+
+
+            
+            colors(black; white).
+            white(king_white;queen_white;pawn_white;rook_white;bishop_white;knight_white).
+            black(king_black;queen_black;pawn_black;rook_black;bishop_black;knight_black).
+            #const max_king = 1.
+            #const max_queen = 1.
+            #const max_pawn = 4.
+            #const max_knight = 2.
+            #const max_rook = 2.
+            #const max_bishop = 2.
+            
+            :- piece_start(XX,YY, T1,ID1), piece_start(XX,YY,T2,ID2), T1 != T2.
+            :- piece_start(XX,YY, T1,ID1), piece_start(XX,YY,T2,ID2), ID1 != ID2.
+
+            piece_path(XX,YY) :- piece_start(XX,YY,_,_).
+            piece_path(XX,YY) :- piece_path(XX,YY,_,_).
+            
+        
+            1{piece_start(XX,YY,king_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_king).
+            1{piece_start(XX,YY,king_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_king).
+
+            king(king_white;king_black).
+            piece_path(XX,YY,King,ID) :- piece_start(XX,YY,King,ID), king(King).
+            piece_path(XX,YY,King,ID) :- tile(XX,YY,filled), piece_path(XX+II,YY+JJ,King,ID), king(King), II = (-1;0;1), JJ=(-1;0;1).
+            
+        
+            king_border(XX,YY,king_black,ID) :- piece_start(XX+II, YY+JJ, king_black,ID), piece_start(XX,YY,Friend, _), black(Friend), II = (-1;0;1), JJ=(-1;0;1).
+            %king_border(XX,YY,king_black,ID) :- piece_start(XX+II, YY+JJ, king_black,ID), XX > max_width, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_black,ID) :- piece_start(XX+II, YY+JJ, king_black,ID), XX < 1, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_black,ID) :- piece_start(XX+II, YY+JJ, king_black,ID), YY > max_height, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_black,ID) :- piece_start(XX+II, YY+JJ, king_black,ID), YY < 1, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+
+            king_border(XX,YY,king_white,ID) :- piece_start(XX+II, YY+JJ, king_white,ID), piece_start(XX,YY,Friend, _), white(Friend), II = (-1;0;1), JJ=(-1;0;1).
+            %king_border(XX,YY,king_white,ID) :- piece_start(XX+II, YY+JJ, king_white,ID), XX > max_width, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_white,ID) :- piece_start(XX+II, YY+JJ, king_white,ID), XX < 1, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_white,ID) :- piece_start(XX+II, YY+JJ, king_white,ID), YY > max_height, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+            %king_border(XX,YY,king_white,ID) :- piece_start(XX+II, YY+JJ, king_white,ID), YY < 1, II = (-1;0;1), JJ=(-1;0;1), width(XX+II), height(YY+JJ).
+
+            king_protected(XX,YY,King,ID) :- king(King), piece_start(XX,YY,King,ID), 
+                king_border(XX+1,YY,King,ID), 
+                king_border(XX-1,YY,King,ID), 
+                king_border(XX,YY+1,King,ID), 
+                king_border(XX,YY-1,King,ID), 
+                king_border(XX+1,YY+1,King,ID), 
+                king_border(XX-1,YY-1,King,ID), 
+                king_border(XX+1,YY-1,King,ID), 
+                king_border(XX-1,YY+1,King,ID).
+
+            :- piece_start(XX,YY,King,ID), not king_protected(XX,YY,King,ID), king(King).
+        
+
+            1{piece_start(XX,YY,queen_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_queen).
+            1{piece_start(XX,YY,queen_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_queen).
+
+            %% queen movement
+            piece_path(XX,YY,Queen,ID) :- piece_start(XX,YY,Queen,ID), Queen = (queen_white;queen_black).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX + II,YY,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(II).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX - II,YY,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(II).
+
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX,YY + JJ,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), height(JJ).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX,YY - JJ,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), height(JJ).
+
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX + Offset,YY + Offset,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX - Offset,YY + Offset,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX + Offset,YY - Offset,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Queen,ID) :- piece_path(XX - Offset,YY - Offset,Queen,ID), Queen = (queen_white;queen_black), tile(XX,YY,filled), width(Offset).
+
+            :- not piece_path(XX,YY,queen_white,ID), piece_start(XX,YY,king_black,_), ID = (1..max_queen).
+            :- not piece_path(XX,YY,queen_black,ID), piece_start(XX,YY,king_white,_), ID = (1..max_queen).
+        
+            1{piece_start(XX,YY,pawn_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_pawn).
+            1{piece_start(XX,YY,pawn_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_pawn).
+            
+            %% pawn movement
+            piece_path(XX,YY,pawn_black,ID) :- piece_start(XX,YY,pawn_black,ID).
+            piece_path(XX,YY,pawn_black,ID) :- piece_path(XX,YY-1,pawn_black,ID), tile(XX,YY,filled).
+            piece_path(XX,YY,pawn_black,ID) :- piece_path(XX+1,YY-1,pawn_black,ID), tile(XX,YY,filled), piece_path(XX,YY,Enemy,_), white(Enemy).
+            piece_path(XX,YY,pawn_black,ID) :- piece_path(XX-1,YY-1,pawn_black,ID), tile(XX,YY,filled), piece_path(XX,YY,Enemy,_), white(Enemy).
+
+            valid_pawn(pawn_black,ID) :- piece_start(XX,YY,king_white,_), piece_path(XX+(-1;1),YY-1, pawn_black,ID).
+            :- piece_start(_,_,pawn_black,ID), not valid_pawn(pawn_black,ID). 
+
+            piece_path(XX,YY,pawn_white,ID) :- piece_start(XX,YY,pawn_white,ID).
+            piece_path(XX,YY,pawn_white,ID) :- piece_path(XX,YY+1,pawn_white,ID), tile(XX,YY,filled).
+            piece_path(XX,YY,pawn_white,ID) :- piece_path(XX+1,YY+1,pawn_white,ID), tile(XX,YY,filled), piece_path(XX,YY,Enemy,_), black(Enemy).
+            piece_path(XX,YY,pawn_white,ID) :- piece_path(XX-1,YY+1,pawn_white,ID), tile(XX,YY,filled), piece_path(XX,YY,Enemy,_), black(Enemy).
+
+            valid_pawn(pawn_white,ID) :- piece_start(XX,YY,king_black,_), piece_path(XX+(-1;1),YY+1, pawn_white,ID).
+            :- piece_start(_,_,pawn_white,ID), not valid_pawn(pawn_white,ID). 
+
+        
+            1{piece_start(XX,YY,knight_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_knight).
+            1{piece_start(XX,YY,knight_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_knight).
+
+            knight(knight_white;knight_black).
+            piece_path(XX,YY,Knight,ID) :- piece_start(XX,YY,Knight,ID), knight(Knight).
+            piece_path(XX,YY,Knight,ID) :- tile(XX,YY,filled), piece_path(XX + II, YY + JJ, Knight,ID), knight(Knight), II = (2;-2), JJ = (1;-1).
+            piece_path(XX,YY,Knight,ID) :- tile(XX,YY,filled), piece_path(XX + II, YY + JJ, Knight,ID), knight(Knight), II = (1;-1), JJ = (2;-2).
+            
+            :- not piece_path(XX,YY,knight_white,(1..max_knight)), piece_start(XX,YY,king_black,_).
+            :- not piece_path(XX,YY,knight_black,(1..max_knight)), piece_start(XX,YY,king_white,_).
+        
+            1{piece_start(XX,YY,bishop_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_bishop).
+            1{piece_start(XX,YY,bishop_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_bishop).
+            
+            bishop(bishop_white;bishop_black).
+            
+            piece_path(XX,YY,Bishop,ID) :- piece_start(XX,YY,Bishop,ID), bishop(Bishop).
+            piece_path(XX,YY,Bishop,ID) :- piece_path(XX + Offset,YY + Offset,Bishop,ID), bishop(Bishop), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Bishop,ID) :- piece_path(XX - Offset,YY + Offset,Bishop,ID), bishop(Bishop), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Bishop,ID) :- piece_path(XX + Offset,YY - Offset,Bishop,ID), bishop(Bishop), tile(XX,YY,filled), width(Offset).
+            piece_path(XX,YY,Bishop,ID) :- piece_path(XX - Offset,YY - Offset,Bishop,ID), bishop(Bishop), tile(XX,YY,filled), width(Offset).
+
+            :- not piece_path(XX,YY,bishop_white,(1..max_bishop)), piece_start(XX,YY,king_black,_).
+            :- not piece_path(XX,YY,bishop_black,(1..max_bishop)), piece_start(XX,YY,king_white,_).
+        
+            1{piece_start(XX,YY,rook_white,ID): tile(XX,YY,filled)}1 :- ID = (1..max_rook).
+            1{piece_start(XX,YY,rook_black,ID): tile(XX,YY,filled)}1 :- ID = (1..max_rook).
+
+            rook(rook_white;rook_black).
+            piece_path(XX,YY,Rook,ID) :- piece_start(XX,YY,Rook,ID), rook(Rook).
+            piece_path(XX,YY,Rook,ID) :- piece_path(XX + II,YY,Rook,ID), rook(Rook), tile(XX,YY,filled), width(II).
+            piece_path(XX,YY,Rook,ID) :- piece_path(XX - II,YY,Rook,ID), rook(Rook), tile(XX,YY,filled), width(II).
+
+            piece_path(XX,YY,Rook,ID) :- piece_path(XX,YY + JJ,Rook,ID), rook(Rook), tile(XX,YY,filled), height(JJ).
+            piece_path(XX,YY,Rook,ID) :- piece_path(XX,YY - JJ,Rook,ID), rook(Rook), tile(XX,YY,filled), height(JJ).
+            
+            :- not piece_path(XX,YY,rook_white,(1..max_rook)), piece_start(XX,YY,king_black,_).
+            :- not piece_path(XX,YY,rook_black,(1..max_rook)), piece_start(XX,YY,king_white,_).
+        
